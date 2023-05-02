@@ -1,0 +1,12 @@
+<mat-form-field appearance="fill" class="demo-inline-calendar-card">
+  <mat-label>Select time period</mat-label>
+  <!--  WEB-56339 bug is confirmed-->
+  <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+    <input [(ngModel)]="startDate" matStartDate placeholder="Start date" readonly>
+    <input [(ngModel)]="endDate" matEndDate placeholder="End date" readonly (dateChange)="sendDate()">
+  </mat-date-range-input>
+  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker [calendarHeaderComponent]="DatepickerHeaderComponent" #picker></mat-date-range-picker>
+</mat-form-field>
+<p>Selected period: {{startDate}} - {{endDate}}</p>

@@ -1,0 +1,25 @@
+<form>
+  <label>
+    Choose the region (Other World - World to get statistics by all the world)
+    <p>
+      <select [(ngModel)]="selectedContinent" name="continent" [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="onContinentChange()">
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Africa">Africa</option>
+        <option value="Other World">Other World</option>
+      </select>
+    </p>
+    <label>
+      Choose the country:
+      <p>
+        <select [(ngModel)]="selectedCountry" name="country" [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="sendRegionInfo()">
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+      </p>
+    </label>
+  </label>
+</form>
