@@ -1,6 +1,9 @@
 import {
-  Component
+  Component, ElementRef
 } from '@angular/core';
+import {HttpClientService} from "./components/http-client.service";
+import {ExchangeService} from "./components/exchange.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -12,11 +15,16 @@ export class AppComponent {
   dateFrom: string
   dateTo: string
   country: string
+  statistics: { value: number, date: string }[] = [];
+  subscription: Subscription;
 
-  constructor() {
-    this.dateFrom = ""
-    this.dateTo = ""
-    this.country = ""
+  constructor(private httpClient: HttpClientService, private statsService: ExchangeService) {
+    this.dateFrom = "";
+    this.dateTo = "";
+    this.country = "";
+    this.subscription = this.statsService.exchangeData$.subscribe(data => {
+      this.statistics = data;
+    });
   }
 
   public onCountryChange(country: string) {
@@ -31,9 +39,10 @@ export class AppComponent {
     this.dateTo = dateTo;
   }
 
-  public sendData(){
-    if(this.dateFrom != "" && this.dateTo != "" && this.country != ""){
+  public sendData() {
+    if (this.dateFrom != "" && this.dateTo != "" && this.country != "") {
       console.log(this.dateTo + " " + this.dateFrom + " " + this.country)
+      this.httpClient.requestData(this.dateFrom, this.dateTo, this.country)
     }
   }
 

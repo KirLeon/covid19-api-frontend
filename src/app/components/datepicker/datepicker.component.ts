@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {DatepickerHeaderComponent} from "../datepicker.header/datepicker-header.component";
-import {D} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-datepicker',

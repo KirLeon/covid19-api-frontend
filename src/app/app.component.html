@@ -7,7 +7,7 @@
 <app-header></app-header>
 <app-region (sendCountryEmit)="onCountryChange($event)"></app-region>
 <app-datepicker (sendDateFromEmit)="onDateFromChange($event)" (sendDateToEmit)="onDateToChange($event)"></app-datepicker>
-
 <button class = "c-button" (click)="sendData()"> Send data </button>
+<line-chart [data]="statistics"></line-chart>
 </body>
 </html>
